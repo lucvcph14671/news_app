@@ -7,6 +7,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function Symfony\Component\VarDumper\Dumper\esc;
+
 class RedirectIfAuthenticated
 {
     /**
@@ -20,12 +22,19 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if (Auth::check()) {
+                    if (Auth::user()->role == 0) {
+                        return redirect()->route('/');
+                    }else{
+                        return redirect()->route('admin.post');
+                    }
+                }
+                
             }
         }
+
 
         return $next($request);
     }

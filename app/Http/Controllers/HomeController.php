@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
+use App\Models\Comment;
 use App\Models\post;
 use Illuminate\Http\Request;
 
@@ -14,10 +16,13 @@ class HomeController extends Controller
      */
     public function index()
     { 
-        return view('client.index.index', [
-            'posts' => post::orderBy('created_at','DESC')->paginate(10),
-            'posts_4' => post::orderBy('created_at','DESC')->paginate(4),
-        ]);
+        
+        $comments = Comment::all();
+        $categories = category::all();
+        $posts =  post::orderBy('created_at','DESC')->paginate(10);
+        $posts_4 = post::orderBy('created_at','DESC')->paginate(4);
+
+        return view('client.index.index', compact([ 'categories', 'posts', 'posts_4','comments']));
     }
 
     /**
@@ -25,9 +30,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function detailNew($id)
     {
-        //
+        $detailPost = post::find($id);
+        $categories = category::all();
+        $countComment = Comment::where('post_id', $id)->get();
+        $posts =  post::orderBy('created_at','DESC')->paginate(10);
+        $posts_4 = post::orderBy('created_at','DESC')->paginate(4);
+        return view('client.index.detail_new', compact([ 'categories', 'posts', 'posts_4', 'detailPost','countComment']));
     }
 
     /**

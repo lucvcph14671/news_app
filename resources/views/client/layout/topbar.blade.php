@@ -4,17 +4,27 @@
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-n2">
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Thứ 5, Ngày 1, Năm 2022</a>
+                        <a class="nav-link text-body small" id="date-time" ></a>
                     </li>
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="#">Quảng cáo</a>
+                        <a class="nav-link text-body small">Quảng cáo</a>
                     </li>
-                    <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body nav-item small" >Đăng kí</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body small" href="{{route('login')}}">Đăng nhập</a>
-                    </li>
+                    @if (Auth::check())
+                        <li class="nav-item ">
+                            <a class="nav-link text-warning small">{{ Auth::user()->name }}</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-body small" href="{{route('logout')}}">->Đăng xuất</a>
+                        </li>
+                    @else
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body nav-item small hover " href="{{ route('signin') }}">Đăng kí</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body small" href="{{ route('login') }}">Đăng nhập</a>
+                        </li>
+                    @endif
+
                 </ul>
             </nav>
         </div>
@@ -39,6 +49,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-body" href="#"><small class="fab fa-youtube"></small></a>
                     </li>
+                    
                 </ul>
             </nav>
         </div>
@@ -46,7 +57,8 @@
     <div class="row align-items-center bg-white py-3 px-lg-5">
         <div class="col-lg-4">
             <a href="index.html" class="navbar-brand p-0 d-none d-lg-block">
-                <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span class="text-secondary font-weight-normal">News</span></h1>
+                <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span
+                        class="text-secondary font-weight-normal">News</span></h1>
             </a>
         </div>
         <div class="col-lg-8 text-center text-lg-right">

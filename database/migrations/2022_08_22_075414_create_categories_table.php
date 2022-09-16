@@ -13,12 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->unsignedInteger('status');
-            $table->timestamps();
-        });
+
+
+            Schema::create('categories', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedInteger('id_level')->nullable();
+                $table->string('name');
+                $table->unsignedInteger('status');
+                $table->softDeletes();
+                $table->timestamps();
+            });
+     
+
+
+            
+
+        
     }
 
     /**

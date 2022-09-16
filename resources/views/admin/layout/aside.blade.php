@@ -832,223 +832,9 @@
                 <!--end::Menu wrapper-->
             </div>
             <!--end::Notifications-->
-            <!--begin::Activities-->
-            <div class="d-flex align-items-center mb-3">
-                <!--begin::Drawer toggle-->
-                <div class="btn btn-icon btn-custom" data-kt-menu-trigger="click" data-kt-menu-overflow="true"
-                    data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-dismiss="click" title="Activity Logs" id="kt_activities_toggle">
-                    <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
-                    <span class="svg-icon svg-icon-2 svg-icon-lg-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none">
-                            <rect x="8" y="9" width="3" height="10" rx="1.5"
-                                fill="black" />
-                            <rect opacity="0.5" x="13" y="5" width="3" height="14"
-                                rx="1.5" fill="black" />
-                            <rect x="18" y="11" width="3" height="8" rx="1.5"
-                                fill="black" />
-                            <rect x="3" y="13" width="3" height="6" rx="1.5"
-                                fill="black" />
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                </div>
-                <!--end::drawer toggle-->
-            </div>
-            <!--end::Activities-->
+
             <!--begin::User-->
-            <div class="d-flex align-items-center mb-10" id="kt_header_user_menu_toggle">
-                <!--begin::Menu wrapper-->
-                <div class="cursor-pointer symbol symbol-40px" data-kt-menu-trigger="click"
-                    data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip"
-                    data-bs-placement="right" data-bs-dismiss="click" title="User profile">
-                    <img src="assets/media/avatars/150-26.jpg" alt="image" />
-                </div>
-                <!--begin::Menu-->
-                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
-                    data-kt-menu="true">
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3">
-                        <div class="menu-content d-flex align-items-center px-3">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-50px me-5">
-                                <img alt="Logo" src="assets/media/avatars/150-26.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Username-->
-                            <div class="d-flex flex-column">
-                                <div class="fw-bolder d-flex align-items-center fs-5">Max Smith
-                                    <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
-                                </div>
-                                <a href="#" class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
-                            </div>
-                            <!--end::Username-->
-                        </div>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu separator-->
-                    <div class="separator my-2"></div>
-                    <!--end::Menu separator-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5">
-                        <a href="../dist/account/overview.html" class="menu-link px-5">My Profile</a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5">
-                        <a href="#" class="menu-link px-5">
-                            <span class="menu-text">My Audit Logs</span>
-                            <span class="menu-badge">
-                                <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-                            </span>
-                        </a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
-                        <a href="#" class="menu-link px-5">
-                            <span class="menu-title">My Subscription</span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <!--begin::Menu sub-->
-                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-5">Referrals</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-5">Billing</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-5">Payments</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link d-flex flex-stack px-5">Statements
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                        title="View your statements"></i></a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu separator-->
-                            <div class="separator my-2"></div>
-                            <!--end::Menu separator-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <div class="menu-content px-3">
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input w-30px h-20px" type="checkbox" value="1"
-                                            checked="checked" name="notifications" />
-                                        <span class="form-check-label text-muted fs-7">Notifications</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <!--end::Menu item-->
-                        </div>
-                        <!--end::Menu sub-->
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5">
-                        <a href="#" class="menu-link px-5">My Activities</a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu separator-->
-                    <div class="separator my-2"></div>
-                    <!--end::Menu separator-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
-                        <a href="#" class="menu-link px-5">
-                            <span class="menu-title position-relative">Language
-                                <span
-                                    class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                    <img class="w-15px h-15px rounded-1 ms-2"
-                                        src="assets/media/flags/united-states.svg" alt="" /></span></span>
-                        </a>
-                        <!--begin::Menu sub-->
-                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link d-flex px-5 active">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/united-states.svg"
-                                            alt="" />
-                                    </span>English</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/spain.svg" alt="" />
-                                    </span>Spanish</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/germany.svg" alt="" />
-                                    </span>German</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/japan.svg" alt="" />
-                                    </span>Japanese</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/france.svg" alt="" />
-                                    </span>French</a>
-                            </div>
-                            <!--end::Menu item-->
-                        </div>
-                        <!--end::Menu sub-->
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5 my-1">
-                        <a href="#" class="menu-link px-5">Account Settings</a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5">
-                        <a href="#" class="menu-link px-5">Sign Out</a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu separator-->
-                    <div class="separator my-2"></div>
-                    <!--end::Menu separator-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5">
-                        <div class="menu-content px-5">
-                            <label
-                                class="form-check form-switch form-check-custom form-check-solid pulse pulse-success"
-                                for="kt_user_menu_dark_mode_toggle">
-                                <input class="form-check-input w-30px h-20px" type="checkbox" value="1"
-                                    name="mode" id="kt_user_menu_dark_mode_toggle"
-                                    data-kt-url="../dist/index.html" />
-                                <span class="pulse-ring ms-n1"></span>
-                                <span class="form-check-label text-gray-600 fs-7">Dark Mode</span>
-                            </label>
-                        </div>
-                    </div>
-                    <!--end::Menu item-->
-                </div>
-                <!--end::Menu-->
-                <!--end::Menu wrapper-->
-            </div>
+            @include('admin/user/profile')
             <!--end::User-->
         </div>
         <!--end::Footer-->
@@ -1483,8 +1269,7 @@
                                                             <div class="symbol symbol-40px me-4">
                                                                 <span class="symbol-label bg-light">
                                                                     <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
-                                                                    <span
-                                                                        class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                    <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none">
@@ -1573,8 +1358,7 @@
                                                             <div class="symbol symbol-40px me-4">
                                                                 <span class="symbol-label bg-light">
                                                                     <!--begin::Svg Icon | path: icons/duotune/electronics/elc004.svg-->
-                                                                    <span
-                                                                        class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                    <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none">
@@ -1609,8 +1393,7 @@
                                                             <div class="symbol symbol-40px me-4">
                                                                 <span class="symbol-label bg-light">
                                                                     <!--begin::Svg Icon | path: icons/duotune/graphs/gra001.svg-->
-                                                                    <span
-                                                                        class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                    <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none">
@@ -1642,8 +1425,7 @@
                                                             <div class="symbol symbol-40px me-4">
                                                                 <span class="symbol-label bg-light">
                                                                     <!--begin::Svg Icon | path: icons/duotune/graphs/gra006.svg-->
-                                                                    <span
-                                                                        class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                    <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none">
@@ -1675,8 +1457,7 @@
                                                             <div class="symbol symbol-40px me-4">
                                                                 <span class="symbol-label bg-light">
                                                                     <!--begin::Svg Icon | path: icons/duotune/graphs/gra002.svg-->
-                                                                    <span
-                                                                        class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                    <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none">
@@ -1708,8 +1489,7 @@
                                                             <div class="symbol symbol-40px me-4">
                                                                 <span class="symbol-label bg-light">
                                                                     <!--begin::Svg Icon | path: icons/duotune/communication/com010.svg-->
-                                                                    <span
-                                                                        class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                    <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none">
@@ -1741,8 +1521,7 @@
                                                             <div class="symbol symbol-40px me-4">
                                                                 <span class="symbol-label bg-light">
                                                                     <!--begin::Svg Icon | path: icons/duotune/finance/fin001.svg-->
-                                                                    <span
-                                                                        class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                    <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none">
@@ -2410,30 +2189,35 @@
                                         </span>
                                         <div class="menu-sub menu-sub-accordion">
                                             <div class="menu-item">
-                                                <a class="menu-link" href="../dist/general/about.html">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Đăng bài viết</span>
-                                                </a>
+                                                @can('post_view')
+                                                    <a class="menu-link" href="{{ route('admin.post') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Bài viết</span>
+                                                    </a>
+                                                @endcan
                                             </div>
                                             <div class="menu-item">
-                                                <a class="menu-link active" href="../dist/general/invoice.html">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Danh mục</span>
-                                                </a>
+                                                @can('category_view')
+                                                    <a class="menu-link" href="{{ route('admin.category') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Danh mục</span>
+                                                    </a>
+                                                @endcan
                                             </div>
                                             <div class="menu-item">
-                                                <a class="menu-link" href="../dist/general/faq.html">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Danh sách bài viết</span>
-                                                </a>
+                                                @can('comments_view')
+                                                    <a class="menu-link" href="{{ route('admin.comments') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Bình luận - Nhận xét</span>
+                                                    </a>
+                                                @endcan
                                             </div>
-                    
                                         </div>
                                     </div>
                                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
@@ -2458,52 +2242,14 @@
                                         </span>
                                         <div class="menu-sub menu-sub-accordion">
                                             <div class="menu-item">
-                                                <a class="menu-link" href="../dist/account/overview.html">
+                                                @can('user_view')
+                                                <a class="menu-link" href="{{ route('admin.user') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
-                                                    <span class="menu-title">Overview</span>
+                                                    <span class="menu-title">Quản lí tài khoản</span>
                                                 </a>
-                                            </div>
-                                            <div class="menu-item">
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Settings
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-bold fs-9 px-2 py-1 ms-1">Pro</span></span>
-                                                </a>
-                                            </div>
-                                            <div class="menu-item">
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Security
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-bold fs-9 px-2 py-1 ms-1">Pro</span></span>
-                                                </a>
-                                            </div>
-                                            <div class="menu-item">
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Audit Logs
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-bold fs-9 px-2 py-1 ms-1">Pro</span></span>
-                                                </a>
-                                            </div>
-                                            <div class="menu-item">
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Activity
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-bold fs-9 px-2 py-1 ms-1">Pro</span></span>
-                                                </a>
+                                                @endcan
                                             </div>
                                         </div>
                                     </div>
@@ -2512,7 +2258,7 @@
                                             <div class="separator mx-1 my-4"></div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <!--end::Menu-->

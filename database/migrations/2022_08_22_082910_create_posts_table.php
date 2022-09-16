@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->unsignedInteger('id_user');
-            $table->unsignedInteger('id_category');
-            $table->string('desc');
-            $table->string('image');
-            $table->timestamps();
-        });
+            Schema::create('posts', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->unsignedInteger('id_user');
+                $table->unsignedInteger('id_category');
+                $table->longText('desc');
+                $table->text('image');
+                $table->dateTime('post_at')->nullable();
+                $table->softDeletes();
+                $table->timestamps();
+            });
     }
 
     /**
