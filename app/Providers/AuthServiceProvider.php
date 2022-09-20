@@ -36,13 +36,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        // DB::enableQueryLog();
 
         $permissions = Cache::get('permissions');
         if (is_null($permissions)) {
 
             $permissions = DB::table('permissions')->pluck('code')->toArray();
-            $permission_s = collect($permissions)->pluck('code')->toArray();
+
             Cache::put('permissions', $permissions, 60);
         }
         foreach ($permissions as $permission_code) {
@@ -50,24 +49,18 @@ class AuthServiceProvider extends ServiceProvider
                 return $this->checkPermissions($user, $permission_code);
             });
         }
-        // Log::info(array_column(DB::getQueryLog(), 'query'));
     }
 
     protected function checkPermissions($user, $code)
     {
 
-        $role_ids = Cache::get('roles');
-        if (is_null($role_ids)) {
-            $role_ids = DB::table('user_roles')->where('user_id', $user->id)->pluck('role_id')->toArray();
-            Cache::put('roles', $role_ids, 60);
-        }
-
-        $permission_code = Cache::get('permission_code');
+        $permission_code = Cache::get('permission_code_'.$user->id.'');
         if (is_null($permission_code)) {
 
+            $role_ids = DB::table('user_roles')->where('user_id', $user->id)->pluck('role_id')->toArray();
             $permission_ids = DB::table('permission_roles')->whereIn('role_id', $role_ids)->get();
             $permission_code = DB::table('permissions')->whereIn('id', $permission_ids->pluck('permission_id'))->pluck('code')->toArray();
-            Cache::put('permission_code', $permission_code, 60);
+            Cache::put('permission_code_'.$user->id.'', $permission_code, 60);
         }
 
         return in_array($code, $permission_code, true) === true ? true : false;

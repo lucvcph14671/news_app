@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UserEntity
 {
-    public function index()
+    public function dataUser()
     {
         return response()->json([
             'data' => User::whereNot('role', 1)->get()

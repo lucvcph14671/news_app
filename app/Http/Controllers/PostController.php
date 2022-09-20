@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
-    
+
 
     /**
      * Display a listing of the resource.
@@ -43,21 +43,21 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $data)
     {
-        if (! Gate::allows('post_add')) {
+        if (!Gate::allows('post_add')) {
             abort(403);
         }
         $postEntity = new PostEntity;
 
-        if ($postEntity->store($request)) {
+        if ($postEntity->addPost($data)) {
             return response()->json([
-                'status' => '200',
+                'status'  => '200',
                 'message' => 'Thêm mới bào viết thành công'
             ]);
         }
         return response()->json([
-            'status' => '404',
+            'status'  => '404',
             'message' => 'Thêm bài viết thất bại, Vui lòng thử lại!'
         ]);
     }
@@ -81,7 +81,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        if (! Gate::allows('post_edit')) {
+        if (!Gate::allows('post_edit')) {
             abort(403);
         }
         $post = post::find($id);
@@ -97,22 +97,25 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $id)
+    public function update(PostRequest $data, $id)
     {
-        if (! Gate::allows('post_edit')) {
+        if (!Gate::allows('post_edit')) {
             abort(403);
         }
-        $postEntity = new PostEntity;
 
-        if ($postEntity->update($request, $id)) {
+        if (!post::find($id)) {
+
             return response()->json([
-                'status' => '200',
-                'message' => 'Update bài viết thành công'
+                'status'  => '404',
+                'message' => 'Update bài viết thất bại, Vui lòng thử lại!'
             ]);
         }
+
+        $postEntity = new PostEntity;
+        $postEntity->update($data, $id);
         return response()->json([
-            'status' => '404',
-            'message' => 'Update bài viết thất bại, Vui lòng thử lại!'
+            'status'  => '200',
+            'message' => 'Update bài viết thành công'
         ]);
     }
 
@@ -124,21 +127,23 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('post_delete')) {
+        if (!Gate::allows('post_delete')) {
             abort(403);
         }
-        if (post::destroy($id)) {
 
+        if (!post::find($id)) {
             return response()->json([
-                'status' => '200',
-                'message' => 'Xóa thành công bài viết'
-            ]);
-        } else {
-
-            return response()->json([
-                'status' => '404',
+                'status'  => '404',
                 'message' => 'Xóa thất bại, Vui lòng thử lại!'
             ]);
         }
+
+        $postEntity = new PostEntity;
+        $postEntity->destroy($id);
+
+        return response()->json([
+            'status'  => '200',
+            'message' => 'Xóa thành công bài viết'
+        ]);
     }
 }

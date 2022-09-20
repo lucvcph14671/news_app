@@ -27,24 +27,23 @@ class AuthController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (!Auth::attempt(['email' => $email, 'password' => $password])) {
 
-            if (Auth::user()->role == 2) 
-            {
-                return redirect()->route('admin.post');
-
-            } else  if (Auth::user()->role == 1) 
-            {
-                return redirect()->route('admin.post');
-
-            } else 
-            {
-                return redirect()->route('/');
-            }
-
-        }else{
             return redirect()->route('login')->with('msg_eror', 'Đăng nhập không thành công, vui lòng nhập tài khoản mật khẩu chính xác!');
+
         }
+
+        if (Auth::user()->role == 2) {
+
+            return redirect()->route('admin.post');
+        }
+
+        if (Auth::user()->role == 1) {
+
+            return redirect()->route('admin.post');
+        }
+
+        return redirect()->route('/');
     }
 
     /**
@@ -67,12 +66,14 @@ class AuthController extends Controller
     {
         //  dd($request->all());
         User::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'status' => 0,
-            'role' => 0,
+
+            'name'     => $request->name,
+            'phone'    => $request->phone,
+            'email'    => $request->email,
+            'status'   => 0,
+            'role'     => 0,
             'password' => Hash::make($request->password),
+            
         ]);
 
         return redirect()->route('login')->with('msg', 'Đăng kí tài khoản thành công, vui lòng đăng nhập');

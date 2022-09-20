@@ -9,7 +9,7 @@ use function PHPUnit\Framework\isNull;
 
 class CommentEntity
 {
-    public function index()
+    public function getDataComment()
     {
         return response()->json([
             'data' => Comment::orderBy('created_at', 'DESC')->get()
@@ -22,7 +22,7 @@ class CommentEntity
                 })
         ]);
     }
-    public function show($id)
+    public function showComment($id)
     {
 
         return response()->json([
@@ -37,12 +37,12 @@ class CommentEntity
         ]);
     }
 
-    public function store($request)
+    public function store($data)
     {
         return Comment::create([
             'user_id' => Auth::user()->id,
-            'post_id' => $request->id,
-            'comment' =>  $request->comment
+            'post_id' => $data->id,
+            'comment' =>  $data->comment
         ]);
     }
 }

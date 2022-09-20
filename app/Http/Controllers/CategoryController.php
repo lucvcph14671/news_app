@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if(! Gate::allows('category_view')){
+        if (!Gate::allows('category_view')) {
 
             abort(403);
         }
@@ -26,7 +26,6 @@ class CategoryController extends Controller
             'id_levels' => category::all(),
             'categories' => category::paginate(5),
         ]);
-
     }
 
     /**
@@ -34,9 +33,8 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( )
+    public function create()
     {
-        
     }
 
     /**
@@ -45,14 +43,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $data)
     {
-        if(! Gate::allows('category_add')){
+        if (!Gate::allows('category_add')) {
             abort(403);
         }
         $categoryEntity = new CategoryEntity();
 
-        $categoryEntity->store($request);
+        $categoryEntity->store($data);
 
         return redirect()->route('admin.category')->with('alert_success', 'Thêm chuyên mục mới thành công');
     }
@@ -76,18 +74,18 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-       
-        if(! Gate::allows('category_edit')){
+
+        if (!Gate::allows('category_edit')) {
             abort(403);
         }
 
-        $category = category::find($id);
-        $id_levels = category::all();
-        $categories =category::paginate(5);
-       
+        $category   = category::find($id);
+        $id_levels  = category::all();
+        $categories = category::paginate(5);
+
         return view('admin.category.category', [
-            'category' => $category,
-            'id_levels' => $id_levels,
+            'category'   => $category,
+            'id_levels'  => $id_levels,
             'categories' => $categories,
         ]);
     }
@@ -99,16 +97,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $data, $id)
     {
-        if(! Gate::allows('category_edit')){
+        if (!Gate::allows('category_edit')) {
             abort(403);
         }
+        if (!category::find($id)) {
+
+            return redirect()->route('admin.category')->with('alert_success', 'Thay đổi Thất bại vui lòng kt lại!');
+        }
+
         $categoryEntity = new CategoryEntity();
 
-        $categoryEntity->update($request,$id);
+        $categoryEntity->updateCategoty($data, $id);
 
-        return redirect()->route('admin.category')->with('alert_success','Thay đổi thành công chuyên mục');
+        return redirect()->route('admin.category')->with('alert_success', 'Thay đổi thành công chuyên mục');
     }
 
     /**
@@ -118,15 +121,19 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-        if(! Gate::allows('category_delete')){
+    {
+        if (!Gate::allows('category_delete')) {
             abort(403);
         }
-        if($id){
-            category::destroy($id);
-            // category::whereIn('id_level', $id_ct)->get()->delete(); 
-            return redirect()->route('admin.category')->with('alert_success', 'Xóa thành công chuyên mục');
+
+        if (!category::find($id)) {
+
+            return redirect()->route('admin.category')->with('alert_success', 'Xóa Thất bại vui lòng kt lại!');
         }
-       
+
+        $categoryEntity = new CategoryEntity();
+        $categoryEntity->destroyCategory($id);
+
+        return redirect()->route('admin.category')->with('alert_success', 'Xóa thành công chuyên mục');
     }
 }

@@ -7,32 +7,45 @@ use App\Models\User_role;
 
 class UserRoleEntity
 {
-    public function updateRoleUser($request, $id){
+    public function updateRoleUser($data, $id){
 
-        if($request->dataUser['name'] == null || $request->dataUser['email'] == null || $request->dataUser['phone'] == null){
+        if($data->dataUser['name'] == null || $data->dataUser['email'] == null || $data->dataUser['phone'] == null){
+            
             return response()->json([
-                'status' => '404',
+                'status'  => '404',
                 'message' => 'Không được để trống!'
             ]);
         }
-       
-            $user = User::find($id);
-            $user->name = $request->dataUser['name'];
-            $user->email = $request->dataUser['email'];
-            $user->phone = $request->dataUser['phone'];
-            if($request->dataUser['avt'] != null){
-                $user->avatar = $request->dataUser['avatar'];
-            }
-            $user->save();
-            
-        if ($request->role_id == null) {
+
+        if ($data->role_id == null) {
+
             return response()->json([
-                'status' => '404',
+                'status'  => '404',
                 'message' => 'Vui lòng chọn vai trò!'
             ]);
         }
+        if($data->dataUser['avt'] == null){
+
+            $user = User::find($id);
+            $avatar = $user->avatar;
+        }
+        
+        $avatar = $data->dataUser['avatar'];
+
+        User::where('id', $id)
+            ->update([
+
+                'name'   => $data->dataUser['name'],
+                'email'  => $data->dataUser['email'],
+                'phone'  => $data->dataUser['phone'],
+                'avatar' => $avatar,
+
+            ]);
+
         User_role::where('user_id', $id)->delete();
-        foreach ($request->role_id as $role_ids) {
+
+        foreach ($data->role_id as $role_ids) {
+
             User_role::create([
                 'role_id' => $role_ids,
                 'user_id' => $id,

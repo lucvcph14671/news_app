@@ -51,6 +51,7 @@ class PostTest extends TestCase
         ]);
        
         $response->assertSessionHasNoErrors();
+        
         $response->assertStatus(200)->assertJson(fn (AssertableJson $json) =>
         $json->hasAny([
             'status',

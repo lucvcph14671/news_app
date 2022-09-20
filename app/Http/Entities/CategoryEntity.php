@@ -10,20 +10,30 @@ use function PHPUnit\Framework\isNull;
 
 class CategoryEntity
 {
-    public function store($request){
+    public function store($data){
 
         category::create([
-            'name' => $request->name,
-            'id_level' => $request->id_level,
-            'status' => 0,
+
+            'name'     => $data->name,
+            'id_level' => $data->id_level,
+            'status'   => 0,
         ]);
     }
 
-    public function update($request,$id){
+    public function updateCategoty($data, $id){
 
-        $category = category::find($id);
-        $category->name = $request->name;
-        $category->id_level = $request->id_level;
-        $category->save();
+        category::where('id', $id)
+            ->update([
+
+                'name'     => $data->name,
+                'id_level' => $data->id_level,
+
+            ]);
+    }
+
+    public function destroyCategory($id){
+
+        category::destroy($id);
+
     }
 }

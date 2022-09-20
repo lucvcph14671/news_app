@@ -44,7 +44,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     //bài viết
     Route::any('post', [ PostController::class ,  'index'])->name('post');
-    Route::get('data_post', [ PostEntity::class, 'index' ])->name('data_post');
+    Route::get('data_post', [ PostEntity::class, 'getDataPost' ])->name('data_post');
     Route::any('post_add', [ PostController::class , 'store'])->name('post_add');
     Route::any('edit_post/{id}', [ PostController::class, 'edit'])->name('edit_post');
     Route::any('update_post/{id}', [ PostController::class, 'update'])->name('update_post');
@@ -66,13 +66,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('form-edit-user/{id}', [ UserController::class , 'formEditUser'])->name('form-edit-user');
     Route::get('user', [ UserController::class , 'index'])->name('user');
-    Route::get('user_data', [ UserEntity::class , 'index'])->name('user_data');
+    Route::get('user_data', [ UserEntity::class , 'dataUser'])->name('user_data');
     Route::put('update_role/{id}', [ UserController::class , 'updateRole'])->name('update_role');
 
     //comments
 
     Route::any('comments', [ CommentsController::class , 'index'])->name('comments');
-    Route::get('comment_data', [ CommentEntity::class , 'index'])->name('comment_data');
-    Route::get('comment/{id}', [ CommentEntity::class , 'show'])->name('comment');
+    Route::get('comment_data', [ CommentEntity::class , 'getDataComment'])->name('comment_data');
+    Route::get('comment/{id}', [ CommentEntity::class , 'showComment'])->name('comment');
     Route::delete('delete_comment/{id}', [ CommentsController::class , 'destroy'])->name('delete_comment');
 });

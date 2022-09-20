@@ -36,8 +36,9 @@ class RoleController extends Controller
      */
     public function store(Request $request, $id)
     {   
-        $userRole = User_role::where('user_id', $id)->pluck('role_id')->toArray();
+        $userRole  = User_role::where('user_id', $id)->pluck('role_id')->toArray();
         $user = DB::table('users')->where('id', $id)->get()->toArray();
+        
         return response()->json([
             'data' => $userRole,
             'user' => $user,

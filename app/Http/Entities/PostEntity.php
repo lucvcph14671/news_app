@@ -7,90 +7,80 @@ use Illuminate\Support\Facades\Auth;
 
 class PostEntity
 {
-    public function index()
-    {   
+    public function getDataPost()
+    {
         $posts = post::orderBy('created_at', 'DESC')
-                ->with(['category', 'nameUser'])
-                ->get()->map(function ($post) {
-                    $post->category_name = !is_null($post->category) ? $post->category->name : "";
-                    return $post;
-                })->map(function ($user) {
-                    $user->user_name = !is_null($user->nameUser) ? $user->nameUser->name : "";
-                    return $user;
-                });
-                // dd($posts);
-        return response()->json([   
+            ->with(['category', 'nameUser'])
+            ->get()->map(function ($post) {
+                $post->category_name = !is_null($post->category) ? $post->category->name : "";
+                return $post;
+            })->map(function ($user) {
+                $user->user_name = !is_null($user->nameUser) ? $user->nameUser->name : "";
+                return $user;
+            });
+        return response()->json([
             'data' => $posts,
         ]);
     }
 
-    public function store($request)
+    public function addPost($data)
     {
-        $post = new post();
+        if ($data->file('image')) {
 
-        if ($request->file('image')) {
-            // Cách 1
-            $imagePath = $request->file('image')->getClientOriginalName();
-            $imageName = $request->title . '_' . $imagePath;
-            $file = $request->file('image')->storeAs('baiviet', $imageName);
-            //Cách 2
-            // $imagePath = $request->file('image')->getClientOriginalName();
-            // $imageName = $request->title . '_' . $imagePath;
-            // $request->file('image')->storeAs('baiviet', $imageName);
-            // $post->image = $request->oldImage;
-
-            // return post::create([
-            //     'title' => $request->title,
-            //     'id_user' => Auth::user()->id,
-            //     'id_category' => $request->id_category,
-            //     'desc' => $request->desc,
-            //     'image' => $file,
-            //     'post_at' => $request->post_at
-            // ]);
-
-            $post->title = $request->title;
-            $post->id_user = Auth::user()->id;
-            $post->id_category = $request->id_category;
-            $post->desc = $request->desc;
-            $post->image = $file;
-            $post->post_at = $request->post_at;
-    
-            return $post->save();
+            $image = $this->saveImage($data->file('image'), $data->title, 'baiviet');
         }
+        $addPost = post::create([
+            
+            'title'       => $data->title,
+            'id_user'     => Auth::user()->id,
+            'id_category' => $data->id_category,
+            'desc'        => $data->desc,
+            'image'       => $image,
+            'post_at'     => $data->post_at,
+        ]);
 
-       
+        return $addPost;
     }
 
-    public function update($request, $id)
+    public function saveImage($file, $title, $forder)
     {
-        // dd($request->id_user);
-        $post = post::find($id);
 
-        // $post->id_user = $id;
-        $post->id_user = Auth::user()->id;
+        $imagePath = $file->getClientOriginalName();
+        $imageName = $title . '_' . $imagePath;
+        $file      = $file->storeAs($forder, $imageName);
+        return $file;
+    }
 
-        if ($request->file('image')) {
-            //cách 1
-            // $imagePath = $request->file('image')->getClientOriginalName();
-            // $imageName = $request->title . '_' . $imagePath;
-            // $request->file('image')->storeAs('baiviet', $imageName);
-            // $post->image = $request->oldImage;
+    public function update($data, $id)
+    {
+        
+        if ($data->file('image')) {
 
-            //Cách 2
-            $imagePath = $request->file('image')->getClientOriginalName();
-            $imageName = $request->title . '_' . $imagePath;
-            $file = $request->file('image')->storeAs('baiviet', $imageName);
-            $post->image = $file;
+            $image = $this->saveImage($data->file('image'), $data->title, 'baiviet');
         } else {
 
-            $post->image = $post->image;
+            $post  = post::find($id);
+            $image = $post->image;
         }
 
-        $post->title = $request->title;
-        $post->id_category = $request->id_category;
-        $post->desc = $request->desc;
-        $post->post_at = $request->post_at;
+        $updatePost = post::where('id', $id)
+            ->update([
 
-        return $post->save();
+                'id_user'     => Auth::user()->id,
+                'image'       => $image,
+                'title'       => $data->title,
+                'id_category' => $data->id_category,
+                'desc'        => $data->desc,
+                'post_at'     => $data->post_at,
+
+            ]);
+
+        return $updatePost;
+    }
+
+    public function destroy($id)
+    {
+
+        post::destroy($id);
     }
 }
