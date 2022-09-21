@@ -32,17 +32,6 @@ class AuthController extends Controller
             return redirect()->route('login')->with('msg_eror', 'Đăng nhập không thành công, vui lòng nhập tài khoản mật khẩu chính xác!');
 
         }
-
-        if (Auth::user()->role == 2) {
-
-            return redirect()->route('admin.post');
-        }
-
-        if (Auth::user()->role == 1) {
-
-            return redirect()->route('admin.post');
-        }
-
         return redirect()->route('/');
     }
 
@@ -73,7 +62,7 @@ class AuthController extends Controller
             'status'   => 0,
             'role'     => 0,
             'password' => Hash::make($request->password),
-            
+
         ]);
 
         return redirect()->route('login')->with('msg', 'Đăng kí tài khoản thành công, vui lòng đăng nhập');

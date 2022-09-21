@@ -54,12 +54,12 @@ class PostController extends Controller
             return response()->json([
                 'status'  => '200',
                 'message' => 'Thêm mới bào viết thành công'
-            ]);
+            ],200);
         }
         return response()->json([
             'status'  => '404',
             'message' => 'Thêm bài viết thất bại, Vui lòng thử lại!'
-        ]);
+        ],404);
     }
 
     /**
@@ -87,7 +87,7 @@ class PostController extends Controller
         $post = post::find($id);
         return response()->json([
             'post' => $post,
-        ]);
+        ],200);
     }
 
     /**
@@ -97,7 +97,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $data, $id)
+    public function update(PostRequest $dataPost, $id)
     {
         if (!Gate::allows('post_edit')) {
             abort(403);
@@ -108,15 +108,15 @@ class PostController extends Controller
             return response()->json([
                 'status'  => '404',
                 'message' => 'Update bài viết thất bại, Vui lòng thử lại!'
-            ]);
+            ],404);
         }
 
         $postEntity = new PostEntity;
-        $postEntity->update($data, $id);
+        $postEntity->update($dataPost, $id);
         return response()->json([
             'status'  => '200',
             'message' => 'Update bài viết thành công'
-        ]);
+        ],200);
     }
 
     /**
@@ -135,7 +135,7 @@ class PostController extends Controller
             return response()->json([
                 'status'  => '404',
                 'message' => 'Xóa thất bại, Vui lòng thử lại!'
-            ]);
+            ],404);
         }
 
         $postEntity = new PostEntity;
@@ -144,6 +144,6 @@ class PostController extends Controller
         return response()->json([
             'status'  => '200',
             'message' => 'Xóa thành công bài viết'
-        ]);
+        ],200);
     }
 }

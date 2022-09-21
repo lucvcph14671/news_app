@@ -51,12 +51,12 @@ class PostEntity
         return $file;
     }
 
-    public function update($data, $id)
+    public function update($dataPost, $id)
     {
         
-        if ($data->file('image')) {
+        if ($dataPost->file('image')) {
 
-            $image = $this->saveImage($data->file('image'), $data->title, 'baiviet');
+            $image = $this->saveImage($dataPost->file('image'), $dataPost->title, 'baiviet');
         } else {
 
             $post  = post::find($id);
@@ -68,10 +68,10 @@ class PostEntity
 
                 'id_user'     => Auth::user()->id,
                 'image'       => $image,
-                'title'       => $data->title,
-                'id_category' => $data->id_category,
-                'desc'        => $data->desc,
-                'post_at'     => $data->post_at,
+                'title'       => $dataPost->title,
+                'id_category' => $dataPost->id_category,
+                'desc'        => $dataPost->desc,
+                'post_at'     => $dataPost->post_at,
 
             ]);
 

@@ -40,7 +40,7 @@ class UserController extends Controller
         return response()->json([
             'status' => '200',
             'message' => 'Update trạng thái tài khoản thành công'
-        ]);
+        ],200);
 
         // return response()->json([
         //     'status' => '404',

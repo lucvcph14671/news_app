@@ -42,7 +42,7 @@ class RoleController extends Controller
         return response()->json([
             'data' => $userRole,
             'user' => $user,
-        ]);
+        ],200);
     }
 
     /**
@@ -56,7 +56,7 @@ class RoleController extends Controller
         $roles = DB::table('roles')->select('id', 'name', 'desc_name')->get();
         return response()->json([
             'data' => $roles,
-        ]);
+        ],200);
     }
 
     /**

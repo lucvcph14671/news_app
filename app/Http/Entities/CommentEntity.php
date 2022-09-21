@@ -20,7 +20,7 @@ class CommentEntity
                     $post->post_title = !isNull($post->titlePost) ? $post->titlePost->title : "";
                     return $post;
                 })
-        ]);
+        ],200);
     }
     public function showComment($id)
     {
@@ -34,7 +34,7 @@ class CommentEntity
                     $post->post_title = !isNull($post->titlePost) ? $post->titlePost->title : "";
                     return $post;
                 })
-        ]);
+        ],200);
     }
 
     public function store($data)

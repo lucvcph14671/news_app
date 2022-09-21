@@ -54,13 +54,13 @@ class AuthServiceProvider extends ServiceProvider
     protected function checkPermissions($user, $code)
     {
 
-        $permission_code = Cache::get('permission_code_'.$user->id.'');
+        $permission_code = Cache::get('permission_code:'.$user->id.'');
         if (is_null($permission_code)) {
 
             $role_ids = DB::table('user_roles')->where('user_id', $user->id)->pluck('role_id')->toArray();
             $permission_ids = DB::table('permission_roles')->whereIn('role_id', $role_ids)->get();
             $permission_code = DB::table('permissions')->whereIn('id', $permission_ids->pluck('permission_id'))->pluck('code')->toArray();
-            Cache::put('permission_code_'.$user->id.'', $permission_code, 60);
+            Cache::put('permission_code:'.$user->id.'', $permission_code, 60);
         }
 
         return in_array($code, $permission_code, true) === true ? true : false;

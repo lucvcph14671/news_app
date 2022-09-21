@@ -46,17 +46,17 @@ class CommentsController extends Controller
                 return response()->json([
                     'status' => '200',
                     'message' => 'Nhận xét thành công'
-                ]);
+                ],200);
             }
             return response()->json([
                 'status' => '404',
                 'message' => 'Nhận xét thất bại, Vui lòng thử lại!'
-            ]);
+            ],404);
         }
         return response()->json([
             'status' => '400',
             'message' => 'Vui lòng bạn đăng nhập!'
-        ]);
+        ],404);
     }
 
     /**
@@ -105,13 +105,13 @@ class CommentsController extends Controller
             return response()->json([
                 'status' => '200',
                 'message' => 'Xóa nhận xét của bạn thành công'
-            ]);
+            ],200);
         } else {
 
             return response()->json([
                 'status' => '404',
                 'message' => 'Xóa thất bại, Vui lòng thử lại!'
-            ]);
+            ],404);
         }
     }
 }
