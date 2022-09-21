@@ -43,14 +43,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $data)
+    public function store(CategoryRequest $dataCategory)
     {
         if (!Gate::allows('category_add')) {
             abort(403);
         }
         $categoryEntity = new CategoryEntity();
 
-        $categoryEntity->store($data);
+        $categoryEntity->store($dataCategory);
 
         return redirect()->route('admin.category')->with('alert_success', 'Thêm chuyên mục mới thành công');
     }
@@ -97,7 +97,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $data, $id)
+    public function update(CategoryRequest $dataCategory, $id)
     {
         if (!Gate::allows('category_edit')) {
             abort(403);
@@ -109,7 +109,7 @@ class CategoryController extends Controller
 
         $categoryEntity = new CategoryEntity();
 
-        $categoryEntity->updateCategoty($data, $id);
+        $categoryEntity->updateCategoty($dataCategory, $id);
 
         return redirect()->route('admin.category')->with('alert_success', 'Thay đổi thành công chuyên mục');
     }

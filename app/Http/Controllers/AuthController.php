@@ -22,10 +22,10 @@ class AuthController extends Controller
         return view('auth.login', []);
     }
 
-    public function user_login(LoginRequest $request)
+    public function user_login(LoginRequest $dataUser)
     {
-        $email = $request->email;
-        $password = $request->password;
+        $email = $dataUser->email;
+        $password = $dataUser->password;
 
         if (!Auth::attempt(['email' => $email, 'password' => $password])) {
 
@@ -51,17 +51,17 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function add_user(SigninRequest $request)
+    public function add_user(SigninRequest $dataUser)
     {
         //  dd($request->all());
         User::create([
 
-            'name'     => $request->name,
-            'phone'    => $request->phone,
-            'email'    => $request->email,
+            'name'     => $dataUser->name,
+            'phone'    => $dataUser->phone,
+            'email'    => $dataUser->email,
             'status'   => 0,
             'role'     => 0,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($dataUser->password),
 
         ]);
 

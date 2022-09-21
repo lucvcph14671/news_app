@@ -43,14 +43,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $data)
+    public function store(PostRequest $dataPost)
     {
         if (!Gate::allows('post_add')) {
             abort(403);
         }
         $postEntity = new PostEntity;
 
-        if ($postEntity->addPost($data)) {
+        if ($postEntity->addPost($dataPost)) {
             return response()->json([
                 'status'  => '200',
                 'message' => 'Thêm mới bào viết thành công'

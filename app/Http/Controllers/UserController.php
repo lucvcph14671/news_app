@@ -17,14 +17,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $dataUser)
     {
         $users = User::whereNot('email', 'admin@gmail.com')->get();
         $roles = DB::table('roles')->select('id', 'name', 'desc_name')->get();
         return view('admin/user/user_list', compact('users', 'roles'));
     }
 
-    public function formEditUser(Request $request, $id){
+    public function formEditUser(Request $dataUser, $id){
         $roles = DB::table('roles')->select('id', 'name', 'desc_name')->get();
         return view('admin/user/form-edit', compact('roles'));
     }
@@ -33,10 +33,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateRole($id, Request $request)
+    public function updateRole($id, Request $dataRole)
     {
         $userRoleEntity = new UserRoleEntity;
-        $userRoleEntity->updateRoleUser($request, $id);
+        $userRoleEntity->updateRoleUser($dataRole, $id);
         return response()->json([
             'status' => '200',
             'message' => 'Update trạng thái tài khoản thành công'

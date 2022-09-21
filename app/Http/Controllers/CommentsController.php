@@ -36,13 +36,13 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentsRequest $data)
+    public function store(CommentsRequest $dataComment)
     {
         $commentEntity = new CommentEntity;
 
         if (Auth::check()) {
 
-            if ($commentEntity->store($data)) {
+            if ($commentEntity->store($dataComment)) {
                 return response()->json([
                     'status' => '200',
                     'message' => 'Nhận xét thành công'
